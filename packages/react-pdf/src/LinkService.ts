@@ -172,6 +172,10 @@ export default class LinkService implements IPDFLinkService {
     link.href = url;
     link.rel = this.externalLinkRel || DEFAULT_LINK_REL;
     link.target = newWindow ? '_blank' : this.externalLinkTarget || '';
+    // I think this is the best we can do without modifying pdf.js source to give us
+    // the link text in addition to the url
+    // so until then, this is a partial solution for: https://github.com/wojtekmaj/react-pdf/issues/1424
+    link.ariaLabel = url;
   }
 
   getDestinationHash() {
